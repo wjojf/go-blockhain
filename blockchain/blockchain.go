@@ -23,13 +23,12 @@ func NewBlockchain(difficulty int) *BlockChain {
 	}
 }
 
-func (b *BlockChain) AddBlock(data TransactionData) bool {
+func (b *BlockChain) AddBlock(data TransactionData) {
 	lastHash := b.chain[len(b.chain)-1].hash
 	block := CreateBlock(data, lastHash, b.difficulty)
 	b.chain = append(b.chain, block)
 	log.Println("Successfully added block to blockhain")
 	time.Sleep(1 * time.Second)
-	return true
 }
 
 func (b BlockChain) IsValid() bool {

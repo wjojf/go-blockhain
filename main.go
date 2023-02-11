@@ -18,7 +18,10 @@ func main() {
 			int64(i*100),
 		)
 		wg.Add(1)
-		go b.AddBlock(transaction)
+		go func() {
+			b.AddBlock(transaction)
+			wg.Done()
+		}()
 		i++
 	}
 	fmt.Println("Blocks mining...")
